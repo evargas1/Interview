@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+{% comment %} how would i load these as static {% endcomment %}
+    <script src="https://kit.fontawesome.com/02897945be.js" crossorigin="anonymous"></script>
+    <script src="{% static 'myscripts.js' %}"></script>
+    
+    
+</head>
+<body> 
+    <div class="header active" id="header" >
+        <h1>Hello</h1>
+        <div onclick="openNav()" class="dropdown">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+        </div>
+        <div id="myNav" class="overlay">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <div class="overlay-content">
+                   
+                    <a href="#section-1"> Home</a>
+                    <a href="#section-2">About </a>
+                    <a href="#section-3">Portfilo</a>
+                    <a href="#section-4">Resume</a>
+
+                </div>
+
+            </div>
+    </div>
+
+
+    
+
+
+
+
+
+
+
+
+<main>
+    <section id="section-1">
+        <div class="border-bottom">
+            <img src="{% static '/img/leaves.png' %}" style="width: 750px;" alt="">
+        </div>
+        <div class="intro">
+            
+            
+            <div class="title-sec-anm">
+
+                <div class="patterns">
+                    <svg width="100%" height="100%">
+                      <defs>
+                        <pattern id="polka-dots" x="0" y="0"                    width="100" height="100"
+                                 patternUnits="userSpaceOnUse">
+                          
+                        </pattern>  
+                          <style>
+                      
+                     </style>
+                        
+                      </defs>
+                                
+                      <rect x="0" y="0" width="100%" height="100%" fill="url(#polka-dots)"> </rect>
+                       
+                      
+                     
+                   <text x="50%" y="80%"  text-anchor="middle">
+                    Estrella Vargas
+                   </text>
+                   </svg>
+                  </div>
+        
+        
+            </div>
+            <h3>I'm a Web Developer that enjoys building.</h3>
+            
+            <div class="small-contact-me">
+                <a href="{% static 'https://github.com/evargas1' %}" target="_blank"><i class="fab fa-github fa-3x" style="color: rgb(88, 10, 88); padding-right: 20px;"></i></a>
+                <a href="{% static 'https://www.linkedin.com/in/estrella-vargas-coding1234/' %}"
+                target="_blank"><i class="fab fa-linkedin fa-3x" style="color: rgb(72, 113, 136); padding-right: 20px;"></i></a>
+
+                 <a href="{% static 'https://stackoverflow.com/users/15014695/estrella-vargas' %}" target="_blank"><i class="fab fa-stack-overflow fa-3x" style="color: rgb(230, 180, 45); padding-right: 20px;"></i></a>
+                {% comment %} one letter alomst cost my sanity and killed me {% endcomment %}
+                <p id="text1">vargasestrella290@gmail.com</p>
+                <button class="copyButton" id="copyButton1">
+                    Copy Email
+                </button>
+                <span class="alert">Copied!</span>
+
+            </div>
+            
+            
+
+        </div>
+        
+ 
+
+    </section>
+
+
+
+    <!-- about me page -->
+
+    <section id="section-2">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-2 title-short">
+                    <h1>Who Am I</h1>
+                    {% comment %} for some reason the text above appears as a link {% endcomment %}
+                    <img class="leave-img" src="{% static './img/leaves-2.png' %}" style="width: 600px;" alt="">
+
+                    <div class="side">
+                        <h2 class="rotate">Creative</h2>
+                        <h2>Hold</h2>
+                      </div>
+                </div>
+                <div class="col-2">
+                    <p class="para"> Hello my name is Estrella Vargas. After taking computer science classes in high school, I knew I wanted to pursue a career in this field. I've always been intrigued by how logical and complex computers are. I decided to continue learning more about web devlopement and look foward to an opptunity to learn more. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure praesentium temporibus, facilis sapiente, impedit nulla reiciendis voluptas unde deserunt a eaque quod. Iusto saepe dolorum corporis modi magni maiores harum illum quibusdam, accusamus at dolorem vitae? Sit nulla porro fugit.</p>
+                    {% comment %} for some reason the text appears like a link {% endcomment %}
+                    <div class="icons-of-tech">
+                        <ul>
+                            <li><img src="{% static './img/html.png' %}" style="width: 70px;" alt=""></li>
+                            <li><img src="{% static './img/css.png' %}" style="width: 70px;"  alt=""></li>
+                            <li><img src="{% static './img/python.png' %}" style="width: 70px;"  alt=""></li>
+                            <li><img src="{% static './img/django.png' %}" style="width: 70px;" alt=""></li>
+                            <li><img src="{% static './img/mysql.png' %}" style="width: 80px;"  alt=""></li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+
+    <!-- this will begin my portfilo section  -->
+    <section id="section-3">
+        <h2>Hover over image to read description</h2>
+    <div class="row-2">
+        {% for p in projects %}
+        <div class="col-4">
+            <div class="container-img">
+                <img src="{{ p.image.url }}">
+                <div class="overlay-2">
+                  <div class="text">{{ p.description }}</div>
+                </div>
+              </div>
+            
+            
+            <!-- product image -->
+            <h4>{{ p.title }}</h4>
+            <div class="two-but">
+                
+                <a href="{{ p.link_view }}">View Project</a>
+                <a href="{{ p.link_get }}">Code</a>
+
+
+            </div>
+            
+        </div>
+        {% endfor %}
+
+
+        {% comment %} <div class="col-4">
+            <div class="container-img">
+                <img src="./images/sample.img.jpg" alt="Avatar" class="image">
+                <div class="overlay-2">
+                  <div class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid veritatis quaerat, harum beatae ad magnam animi saepe commodi fugit et quisquam voluptate debitis ullam! Architecto veritatis cupiditate quidem fuga sapiente!</div>
+                </div>
+              </div>
+            
+            <!-- product image -->
+            <h4>title</h4>
+            <div class="two-but">
+                
+                <a href="#">View Project</a>
+                <a href="#">Code</a>
+
+
+            </div>
+            
+        </div>
+
+
+
+        <div class="col-4">
+            <div class="container-img">
+                <img src="./images/sample.img.jpg" alt="Avatar" class="image">
+                <div class="overlay-2">
+                  <div class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid veritatis quaerat, harum beatae ad magnam animi saepe commodi fugit et quisquam voluptate debitis ullam! Architecto veritatis cupiditate quidem fuga sapiente!</div>
+                </div>
+              </div>
+            
+            <!-- product image -->
+            <h4>title</h4>
+            <div class="two-but">
+                
+                <a href="#">View Project</a>
+                <a href="#">Code</a>
+
+
+            </div>
+       
+        </div>
+
+
+        <div class="col-4">
+            <div class="container-img">
+                <img src="./images/sample.img.jpg" alt="Avatar" class="image">
+                <div class="overlay-2">
+                  <div class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid veritatis quaerat, harum beatae ad magnam animi saepe commodi fugit et quisquam voluptate debitis ullam! Architecto veritatis cupiditate quidem fuga sapiente!</div>
+                </div>
+              </div>
+            
+            <!-- product image -->
+            <h4>title</h4>
+            <div class="two-but">
+                
+                <a href="#">View Project</a>
+                <a href="#">Code</a>
+
+
+            </div>
+          
+        </div> {% endcomment %}
+    </div>
+    </section>
+
+    <section id="section-4">
+        <h1>Get In Touch</h1>
+
+        
+    </section>
+
+    
+</main>
+
+<nav id="myDIV">
+    <ul>
+        <li><a href="#section-1" class="btn h" id="un" >Home</a></li>
+        <li><a href="#section-2" onclick="myFunctionn()" class="btn "  >About</a></li>
+        <li><a href="#section-3" onclick="myFunctionn()" class="btn " >Projects</a></li>
+        <li><a href="#section-4" onclick="myFunctionn()" class="btn "  >Resume</a></li>
+        
+    </ul>
+</nav>
+
+<!-- footer section -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.map"></script>
+
+
+
+
+<!-- copied jquery code -->
+<script type="text/javascript">
+    function copy(copyID){
+        var $inp=$("<input>");
+        $("body").append($inp);
+        $inp.val($(""+copyID).text()).select();
+        document.execCommand("copy");
+        $inp.remove();
+        $(".alert").fadeIn(500,
+        function(){
+            $(".alert").fadeOut();
+        });
+    }
+    $(document).ready(function() {
+        $("#copyButton1").click(
+            function(){
+                copy('#text1');
+        });
+    });
+
+</script>
+
+
+<!-- code for responsive nav -->
+
+<script>
+    function openNav() {
+        document.getElementById("myNav").style.width = "100%";
+    }
+    function closeNav() {
+        document.getElementById("myNav").style.width = "0%";
+    }
+</script>
+
+<!-- active page code -->
+<script>
+ // Get the container element
+var btnContainer = document.getElementById("myDIV");
+
+// Get all buttons with class="btn" inside the container
+var btns = btnContainer.getElementsByClassName("btn");
+
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+<script>
+    function myFunctionn() {
+        var element = document.getElementById("un");
+        element.classList.remove("h");
+      }
+</script>
+
+<!-- setting the home button to active -->
+
+
+    
+</body>
+</html>
